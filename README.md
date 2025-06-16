@@ -4,3 +4,7 @@
 
 在线访问：https://lepiai.github.io/
 
+![image](https://github.com/user-attachments/assets/e426c51c-22fa-4154-a021-97a6ae998b9d)
+
+Q群：647564984（口令ai）, VX : gary1780 ,
+乐皮ai：https://space.bilibili.com/543300564
