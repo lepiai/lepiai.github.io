@@ -183,29 +183,32 @@ document.getElementById('moreButton').addEventListener('click', function() {
         reader.readAsText(file);
     }
 
-    function convertJsonToTime(jsonData) {
-        for (const key in jsonData) {
-            if (jsonData.hasOwnProperty(key) && typeof jsonData[key] === 'object') {
-                convertJsonToTime(jsonData[key]);
-            } else if (!isNaN(jsonData[key])) {
-                // 如果是数字类型且长度大于 10，假设是时间戳，进行转换
-                if (jsonData[key].toString().length > 10) {
-                    jsonData[key] = timestampToDatetime(jsonData[key]);
-                }
+function convertJsonToTime(jsonData) {
+    if (jsonData === null) {
+        return;
+    }
+    for (const key in jsonData) {
+        if (jsonData.hasOwnProperty(key) && typeof jsonData[key] === 'object') {
+            convertJsonToTime(jsonData[key]);
+        } else if (!isNaN(jsonData[key])) {
+            // 如果是数字类型且长度大于 10，假设是时间戳，进行转换
+            if (jsonData[key].toString().length > 10) {
+                jsonData[key] = timestampToDatetime(jsonData[key]);
             }
         }
     }
+}
 
-    function timestampToDatetime(timestamp) {
-        const date = new Date(parseFloat(timestamp) * 1000);
-        const year = date.getFullYear();
-        const month = ('0' + (date.getMonth() + 1)).slice(-2);
-        const day = ('0' + date.getDate()).slice(-2);
-        const hours = ('0' + date.getHours()).slice(-2);
-        const minutes = ('0' + date.getMinutes()).slice(-2);
-        const seconds = ('0' + date.getSeconds()).slice(-2);
-        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
-    }
+function timestampToDatetime(timestamp) {
+    const date = new Date(parseFloat(timestamp) * 1000);
+    const year = date.getFullYear();
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
+    const hours = ('0' + date.getHours()).slice(-2);
+    const minutes = ('0' + date.getMinutes()).slice(-2);
+    const seconds = ('0' + date.getSeconds()).slice(-2);
+    return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
 
     
 	
